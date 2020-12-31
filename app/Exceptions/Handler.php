@@ -6,6 +6,9 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
+use App\Traits\ApiResponseTrait;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpExceptions;
 
 
 class Handler extends ExceptionHandler
@@ -44,13 +47,17 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception){
         // dd($exception);
         if($request->expectsJson()){
+					//Model找不到資源
             if($exception instanceof ModelNotFoundException){
-                return response()->json([
-                    'error'=>'找不到資源'
-                ],
-                Response::HTTP_NOT_FOUND
-            );
-            }
+              return $this->errorResponse('找不到資源', Response::HTTP_NOT_FOUND);
+						}
+						//網址輸入錯誤
+						if($exception instanceof NotFoundHttpException){
+              return $this->errorResponse('無法找到此網址', Response::HTTP_NOT_FOUND);
+						}
+						if($exception instanceof MethodNotAllowedHttpException){
+              return $this->errorResponse($exception->getMessage(), Response::HTTP_METHOD_NOT_ALLOWED);
+						}
         }
 
         return parent::render($request, $exception);
