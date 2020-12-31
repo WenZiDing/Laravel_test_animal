@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use Illuminate\Http\Request;
-use Symfony\Compoent\HttpFoundation\Response;
+// use Symfony\Compoent\HttpFoundation\Response;
 
 class AnimalController extends Controller
 {
