@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
 use App\Traits\ApiResponseTrait;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpExceptions;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 
 class Handler extends ExceptionHandler
