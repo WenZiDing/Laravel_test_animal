@@ -2,13 +2,14 @@
 
 namespace App\Exceptions;
 
+
+use App\Traits\ApiResponseTrait;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpFoundation\Response;
-use App\Traits\ApiResponseTrait;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 class Handler extends ExceptionHandler
@@ -58,7 +59,7 @@ class Handler extends ExceptionHandler
 						}
 						if($exception instanceof MethodNotAllowedHttpException){
 							// return $this->errorResponse($exception->getMessage(), Response::HTTP_METHOD_NOT_ALLOWED);
-							return $this->errorResponse('測試測試2', Response::HTTP_NOT_FOUND);
+							return $this->errorResponse('測試測試2', Response::HTTP_METHOD_NOT_ALLOWED);
 						}
         }
 
