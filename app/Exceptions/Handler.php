@@ -51,15 +51,15 @@ class Handler extends ExceptionHandler
         if($request->expectsJson()){
 					//Model找不到資源
             if($exception instanceof ModelNotFoundException){
-              return $this->errorResponse('找不到資源0', Response::HTTP_NOT_FOUND);
+              return $this->errorResponse('找不到資源', Response::HTTP_NOT_FOUND);
 						}
 						//網址輸入錯誤
 						if($exception instanceof NotFoundHttpException){
-              return $this->errorResponse('無法找到此網址1', Response::HTTP_NOT_FOUND);
+              return $this->errorResponse('無法找到此網址', Response::HTTP_NOT_FOUND);
 						}
 						if($exception instanceof MethodNotAllowedHttpException){
 							// return $this->errorResponse($exception->getMessage(), Response::HTTP_METHOD_NOT_ALLOWED);
-							return $this->errorResponse('測試測試2', Response::HTTP_METHOD_NOT_ALLOWED);
+							return $this->errorResponse($exception->getMessage(), Response::HTTP_METHOD_NOT_ALLOWED);
 						}
         }
 
