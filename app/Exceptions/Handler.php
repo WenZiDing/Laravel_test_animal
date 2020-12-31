@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpExceptions;
 
 class Handler extends ExceptionHandler
 {
+	use ApiResponseTrait;
     /**
      * A list of the exception types that are not reported.
      *
