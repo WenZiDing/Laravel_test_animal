@@ -57,7 +57,8 @@ class Handler extends ExceptionHandler
               return $this->errorResponse('無法找到此網址', Response::HTTP_NOT_FOUND);
 						}
 						if($exception instanceof MethodNotAllowedHttpException){
-              return $this->errorResponse($exception->getMessage(), Response::HTTP_METHOD_NOT_ALLOWED);
+							// return $this->errorResponse($exception->getMessage(), Response::HTTP_METHOD_NOT_ALLOWED);
+							return $this->errorResponse('測試測試', Response::HTTP_NOT_FOUND);
 						}
         }
 
