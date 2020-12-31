@@ -15,7 +15,9 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        //
+				//
+			$animal = Animal::get();
+			return response(['data' => $animal], Response::HTTP_OK)
     }
 
     /**
