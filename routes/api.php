@@ -17,4 +17,4 @@ use App\Http\Controllers\AnimalController;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResouece('animals', AnimalController::class);
+Route::apiResource('animals', AnimalController::class);
