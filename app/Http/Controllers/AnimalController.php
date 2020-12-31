@@ -17,7 +17,7 @@ class AnimalController extends Controller
     {
 				//
 			$animal = Animal::get();
-			return response(['data' => $animal], Response::HTTP_OK)
+			return response(['data' => $animal], Response::HTTP_OK);
     }
 
     /**
