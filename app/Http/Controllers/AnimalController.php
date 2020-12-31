@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use Symfony\Compoent\HttpFoundation\Response;
 
 class AnimalController extends Controller
 {
@@ -38,7 +39,7 @@ class AnimalController extends Controller
         //
         $animal = Animal::create($request->all());
         $animal = $animal->refresh();
-        return response($animal,Response::HTTP_CREATED);
+        return response($animal, Response::HTTP_CREATED);
     }
 
     /**
