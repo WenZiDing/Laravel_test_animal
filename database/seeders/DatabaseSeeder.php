@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 			User::truncate();
 
 			User::factory(5)->create();
-			Animal::factory(100)->create();
+			Animal::factory(10000)->create();
 
 			Schema::enableForeignKeyConstraints();
         // \App\Models\User::factory(10)->create();
