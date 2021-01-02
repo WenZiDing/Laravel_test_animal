@@ -19,11 +19,15 @@ class AnimalController extends Controller
 			// $animal = Animal::get();
             // return response(['data' => $animal], Response::HTTP_OK);
             $limit = $request->limit ?? 10;
+
+            $query = Animal::query();
+
+
             if(isset($request->ff)){
-                $ff = explode(',',$request->ff);
+                $ff = explode(',', $request->ff);
                 foreach ($ff as $key => $fff) {
                     list($key, $value) = explode(':', $fff);
-                    $query->where($key, 'like', "%$value%")
+                    $query->where($key, 'like', "%$value%");
                 }
             }
             $animal = Animal::orderBy('id', 'desc')
