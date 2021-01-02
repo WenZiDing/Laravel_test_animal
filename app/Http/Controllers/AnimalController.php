@@ -16,8 +16,13 @@ class AnimalController extends Controller
     public function index()
     {
 				//
-			$animal = Animal::get();
-			return response(['data' => $animal], Response::HTTP_OK);
+			// $animal = Animal::get();
+            // return response(['data' => $animal], Response::HTTP_OK);
+            $limit = $request->limit ?? 10;
+            $animal = Animal::orderBy('id', 'desc')
+                    ->paginate($limit)
+                    ->appends($request->query());
+            return response($animal, Response::HTTP_OK);
     }
 
     /**
