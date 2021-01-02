@@ -24,7 +24,7 @@ class CreateAnimalsTable extends Migration
             $table->text('personality')->nullable()->comment('動物個性');
             $table->unsignedBigInteger('user_id')->comment('所屬會員');
             $table->softDeletes()->comment('刪除時間');
-            $table->timestamps()->comment('測試');
+            $table->timestamps();
         });
     }
 
