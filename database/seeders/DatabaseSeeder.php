@@ -1,6 +1,9 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\Animal;
+use App\Models\User;
+use Illuminate\Support\Facades\Schema;
 
 use Illuminate\Database\Seeder;
 
