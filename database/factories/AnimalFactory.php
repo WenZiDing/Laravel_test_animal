@@ -30,7 +30,7 @@ class AnimalFactory extends Factory
 					'area'=>$this->faker->city,
 					'fix'=>$this->faker->boolean,
 					'description'=>$this->faker->text,
-					'personality'=>$this->faker->city,
+					'personality'=>$this->faker->text,
 					'user_id'=> User::all()->random()->id
             //
         ];
