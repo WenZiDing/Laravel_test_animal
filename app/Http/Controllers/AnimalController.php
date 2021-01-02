@@ -23,10 +23,10 @@ class AnimalController extends Controller
             $query = Animal::query();
 
 
-            if(isset($request->ff)){
-                $ff = explode(',', $request->ff);
-                foreach ($ff as $key => $fff) {
-                    list($key, $value) = explode(':', $fff);
+            if(isset($request->filters)){
+                $filters = explode(',', $request->filters);
+                foreach ($filters as $key => $filter) {
+                    list($key, $value) = explode(':', $filter);
                     $query->where($key, 'like', "%$value%");
                 }
             }
