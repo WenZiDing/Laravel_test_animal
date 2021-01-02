@@ -16,7 +16,6 @@ class AnimalController extends Controller
      */
     public function index(Request $request)
     {
-        dd($this->faker->name);
 				//
 			// $animal = Animal::get();
             // return response(['data' => $animal], Response::HTTP_OK);
