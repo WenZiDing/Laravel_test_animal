@@ -3,7 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Animal;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class AnimalFactory extends Factory
 {
@@ -22,6 +24,14 @@ class AnimalFactory extends Factory
     public function definition()
     {
         return [
+					'type_id'=> $this->faker->numberBetween(1, 3),
+					'name'=> $this->faker->name,
+					'birthday'=> $this->faker->date(),
+					'area'=>$this->faker->city,
+					'fix'=>$this->faker->boolean,
+					'description'=>$this->faker->text,
+					'personality'=>$this->faker->city,
+					'user_id'=> User::all()->random()->id
             //
         ];
     }
