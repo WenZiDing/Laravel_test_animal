@@ -6,6 +6,7 @@ use App\Models\Animal;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+
 class AnimalController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class AnimalController extends Controller
      */
     public function index(Request $request)
     {
+        dd($this->faker->name);
 				//
 			// $animal = Animal::get();
             // return response(['data' => $animal], Response::HTTP_OK);
@@ -25,12 +27,13 @@ class AnimalController extends Controller
 
             if(isset($request->filters)){
                 $filters = explode(',', $request->filters);
+                
                 foreach ($filters as $key => $filter) {
-                    list($key, $value) = explode(':', $filter);
-                    $query->where($key, 'like', "%$value%");
+                    list($key1, $value) = explode(':', $filter);
+                    $query->where($key1, 'like', "%$value%");
                 }
             }
-            $animal = Animal::orderBy('id', 'desc')
+            $animal = $query->orderBy('id', 'desc')
                     ->paginate($limit)
                     ->appends($request->query());
             return response($animal, Response::HTTP_OK);
