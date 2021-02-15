@@ -23,18 +23,28 @@ class AnimalController extends Controller
 
             $query = Animal::query();
 
-
+            //多重排序
+            if(isset($request->sorts)){
+                $Sorts = explode(',',$request->sorts);
+                foreach ($Sorts as $key => $value){
+                    list($key0, $value0) = explode(':',$value);
+                    if($value0 == 'asc' || $value0 == 'desc'){
+                        $query->orderBy($key0,$value0);
+                    }
+                }
+            }else{
+                $query->orderBy('id','desc');
+            }
+            //過濾
             if(isset($request->filters)){
                 $filters = explode(',', $request->filters);
-                
+
                 foreach ($filters as $key => $filter) {
                     list($key1, $value) = explode(':', $filter);
-                    $query->where($key1, 'like', "%$value%");
+                    $query->where($key1, 'like', "%$value%")->orderBy('id','asc');
                 }
             }
-            $animal = $query->orderBy('id', 'desc')
-                    ->paginate($limit)
-                    ->appends($request->query());
+            $animal = $query->paginate($limit)->appends($request->query());
             return response($animal, Response::HTTP_OK);
     }
 
