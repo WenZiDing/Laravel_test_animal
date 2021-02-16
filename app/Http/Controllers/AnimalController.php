@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Cache;
 
 
 class AnimalController extends Controller
@@ -19,6 +20,15 @@ class AnimalController extends Controller
     }
     public function index(Request $request)
     {
+        $url = $request->url();
+        $queryParams = $request->query();
+        ksort($queryParams);
+        $queryString = http_build_query($queryParams);
+        $fullUrl = "{$url}?{$queryString}";
+
+        if(Cache::has($fullUrl)){
+            return Cache::get($fullUrl);
+        }
 				//
 			// $animal = Animal::get();
             // return response(['data' => $animal], Response::HTTP_OK);
@@ -48,7 +58,10 @@ class AnimalController extends Controller
                 }
             }
             $animal = $query->paginate($limit)->appends($request->query());
-            return response($animal, Response::HTTP_OK);
+            return Cache::remember($fullUrl,60,function ()use($animal){
+                return response($animal, Response::HTTP_OK);
+            });
+
     }
 
     /**
